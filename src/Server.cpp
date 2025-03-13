@@ -20,7 +20,10 @@ void Server::init_server(const char* ip, int port)
 	if(status)
 		exit(EXIT_FAILURE);
 
-	status = server_setup::fill_address(addr, ip, port);
+	const char* correct_ip = ip ? ip: DEFAULT_IP;
+	const int correct_port = port ? port : DEFAULT_PORT;
+	
+	status = server_setup::fill_address(addr, correct_ip, correct_port);
 
 	if(status)
 		exit(EXIT_FAILURE);
