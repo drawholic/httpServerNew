@@ -3,13 +3,15 @@
 
 #include <vector>
 #include <poll.h>
-
+#include <algorithm>
 
 typedef std::vector<pollfd>::iterator pollfd_it;
 
 class ClientsContainer
 {
 	std::vector<pollfd> fds;
+
+	pollfd_it find_fd(int);
 
 public:
 	ClientsContainer();
