@@ -76,7 +76,7 @@ namespace server_setup{
 			perror("Failure setting address to string\n");
 			return -1;
 		};
-		addr->sin_port = port;
+		addr->sin_port = htons(port);
 		addr->sin_family = AF_INET;
 		return 0;
 	};
