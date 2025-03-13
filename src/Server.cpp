@@ -13,6 +13,8 @@ void Server::init_server(const char* ip, int port)
 {
 	int fd;
 	int status;
+	addr = new sockaddr_in;
+	addrlen = sizeof(*addr);
 	status = server_setup::create_socket(fd);
 
 	if(status)
@@ -38,7 +40,7 @@ void Server::init_server(const char* ip, int port)
 	if(status)
 		exit(EXIT_FAILURE);
 
-
+	buffer = new char[]
 };
 
 Server::~Server(){};
@@ -71,7 +73,7 @@ namespace server_setup{
 	};
 
 	int bind_socket(int sock, sockaddr_in* addr){
-		int status = bind(sock, (sockaddr*)addr, sizeof(*addr));
+		int status = bind(sock, (sockaddr*)addr, addrlen);
 		if(status == -1)
 		{
 			perror("Failure on binding");
