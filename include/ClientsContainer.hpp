@@ -4,6 +4,7 @@
 #include <vector>
 #include <poll.h>
 #include <algorithm>
+#include <cstdio>
 
 typedef std::vector<pollfd>::iterator pollfd_it;
 
@@ -13,6 +14,7 @@ class ClientsContainer
 
 	pollfd_it find_fd(int);
 	bool check_if_exists(int);
+	bool check_if_exists(pollfd_it);
 
 public:
 	ClientsContainer();
@@ -20,6 +22,7 @@ public:
 	int remove(int);
 	int remove(pollfd_it);
 };
+
 
 
 #endif
