@@ -2,7 +2,7 @@
 
 
 
-Server::Server()
+Server::Server(const char* ip, int port)
 {
 
 };
@@ -24,7 +24,7 @@ namespace server_setup{
 
 	void fill_address(sockaddr_in* addr, const char* ip, int port)
 	{
-		if(inet_aton(ip, &addr->in_addr) == 0)
+		if(inet_aton(ip, &addr->sin_addr) == 0)
 		{
 			printf("Failure setting address to string: %s\n", ip);
 		};
