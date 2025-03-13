@@ -11,15 +11,15 @@
 
 namespace server_setup{
 	
-	void create_socket(int);
+	int create_socket(int);
 
-	void fill_address(sockaddr_in*, const char*, int);
+	int fill_address(sockaddr_in*, const char*, int);
 
-	void bind_socket(int, sockaddr_in*);
+	int bind_socket(int, sockaddr_in*);
 
-	void socket_listen(int);
+	int socket_listen(int);
 
-	void set_options(int);
+	int set_options(int);
 };
 
 const int DEFAULT_PORT = 8000;
