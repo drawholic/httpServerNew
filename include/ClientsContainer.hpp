@@ -12,6 +12,7 @@ class ClientsContainer
 	std::vector<pollfd> fds;
 
 	pollfd_it find_fd(int);
+	bool check_if_exists(int);
 
 public:
 	ClientsContainer();
