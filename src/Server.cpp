@@ -66,9 +66,14 @@ namespace server_setup{
 
 	int fill_address(sockaddr_in* addr, const char* ip, int port)
 	{
-		if(inet_aton(ip, &addr->sin_addr) == 0)
+		int status = inet_pton(AF_INET, ip, &addr->sin_addr);
+
+		if(status == 0)
 		{
 			printf("Failure setting address to string: %s\n", ip);
+			return -1;
+		}else if(status == -1){
+			perror("Failure setting address to string\n");
 			return -1;
 		};
 		addr->sin_port = port;
