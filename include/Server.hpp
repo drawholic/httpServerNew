@@ -8,6 +8,7 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <cstdio>
+#include <fcntl.h>
 
 namespace server_setup{
 	
@@ -20,6 +21,8 @@ namespace server_setup{
 	int socket_listen(int, int);
 
 	int set_options(int);
+
+	int set_nonblock(int);
 };
 
 const int DEFAULT_PORT = 8000;
