@@ -15,7 +15,7 @@ class Server
 	char* buffer;
 
 public:
-	Server();
+	Server(const char* ip = 0, int port = 0);
 	void run();
 };
 
