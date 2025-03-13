@@ -13,9 +13,9 @@ class ClientsContainer
 
 public:
 	ClientsContainer();
-	void add(int);
-	void remove(int);
-	void remove(pollfd_it);
+	int add(int);
+	int remove(int);
+	int remove(pollfd_it);
 };
 
 
