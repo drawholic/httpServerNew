@@ -46,6 +46,41 @@ namespace server_setup{
 		return 0;
 	};
 
+	int sock_listen(int sock, int limit)
+	{
+		int status = listen(sock, limit);
+		if(status == -1)
+		{
+			perror("Failure setting to listen");
+			return status;
+		};
+		return 0;
+	};
+
+	int set_options(int sock)
+	{
+		int status = setoptions(sock, SOL_SOCKET, SO_REUSEADDDR, &sock, sizeof(sock));
+		if(status == -1)
+		{
+			perror("Failure setting options");
+			return status;
+		};
+		return status;
+	};
+
+	int set_nonblock(int sock)
+	{
+		int status = fcntl(sock, F_SETFD, O_NONBLOCK);
+	
+		if(status == -1)
+		{
+			perror("Failure setting nonblock");
+			return status;
+		};
+		return 0;
+	};
+
+
 
 
 };
