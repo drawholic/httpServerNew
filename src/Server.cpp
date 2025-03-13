@@ -41,7 +41,7 @@ void Server::init_server(const char* ip, int port)
 	if(status)
 		exit(EXIT_FAILURE);
 
-	buffer = new char[]
+	buffer = new char[BUFFER_SIZE];
 };
 
 Server::~Server(){
