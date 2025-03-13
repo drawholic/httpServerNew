@@ -15,6 +15,7 @@ void Server::init_server(const char* ip, int port)
 	int status;
 	addr = new sockaddr_in;
 	addrlen = sizeof(*addr);
+
 	status = server_setup::create_socket(fd);
 
 	if(status)
@@ -25,7 +26,7 @@ void Server::init_server(const char* ip, int port)
 	if(status)
 		exit(EXIT_FAILURE);
 
-	status = server_setup::bind_socket(fd, addr);
+	status = server_setup::bind_socket(fd, addr, addrlen);
 
 	if(status)
 		exit(EXIT_FAILURE);
@@ -43,13 +44,16 @@ void Server::init_server(const char* ip, int port)
 	buffer = new char[]
 };
 
-Server::~Server(){};
+Server::~Server(){
+	delete[] buffer;
+	delete addr;
+};
 
 void Server::run(){};
 
 
 namespace server_setup{
-	int create_socket(int sock)
+	int create_socket(int& sock)
 	{
 		sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if(sock == -1)
@@ -72,8 +76,8 @@ namespace server_setup{
 		return 0;
 	};
 
-	int bind_socket(int sock, sockaddr_in* addr){
-		int status = bind(sock, (sockaddr*)addr, addrlen);
+	int bind_socket(int sock, sockaddr_in* addr, socklen_t len){
+		int status = bind(sock, (sockaddr*)addr, len);
 		if(status == -1)
 		{
 			perror("Failure on binding");
@@ -95,7 +99,8 @@ namespace server_setup{
 
 	int set_options(int sock)
 	{
-		int status = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &sock, sizeof(sock));
+		int option = 1;
+		int status = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &option, sizeof(option));
 		if(status == -1)
 		{
 			perror("Failure setting options");
@@ -106,7 +111,7 @@ namespace server_setup{
 
 	int set_nonblock(int sock)
 	{
-		int status = fcntl(sock, F_SETFD, O_NONBLOCK);
+		int status = fcntl(sock, F_SETFL, O_NONBLOCK);
 	
 		if(status == -1)
 		{
