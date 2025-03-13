@@ -6,7 +6,10 @@ SRC_DIR = src
 
 all: ${BUILD_DIR} ${BUILD_DIR}/main
 
-OBJS = ${BUILD_DIR}/ReadWrite.o ${BUILD_DIR}/Parser.o ${BUILD_DIR}/ClientContainer.o
+OBJS = ${BUILD_DIR}/ReadWrite.o \
+		${BUILD_DIR}/Parser.o \
+		${BUILD_DIR}/ClientContainer.o \
+		${BUILD_DIR}/Request.o
 
 ${BUILD_DIR}:
 	mkdir -p $@
@@ -20,8 +23,11 @@ ${BUILD_DIR}/Server.o: ${SRC_DIR}/Server.cpp ${OBJS}
 ${BUILD_DIR}/ReadWrite.o: ${SRC_DIR}/ReadWrite.cpp
 	${CXX} ${CXXFLAGS} -c $^ -o $@
 
-${BUILD_DIR}/Parser.o: ${SRC_DIR}/Parser.cpp
+${BUILD_DIR}/Parser.o: ${SRC_DIR}/Parser.cpp ${BUILD_DIR}/Request.o
 	${CXX} ${CXXFLAGS} -c $^ -o $@
 
 ${BUILD_DIR}/ClientContainer.o: ${SRC_DIR}/ClientContainer.cpp
+	${CXX} ${CXXFLAGS} -c $^ -o $@
+
+${BUILD_DIR}/Request.o: ${SRC_DIR}/Request.cpp
 	${CXX} ${CXXFLAGS} -c $^ -o $@
