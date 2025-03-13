@@ -4,6 +4,40 @@
 
 Server::Server(const char* ip, int port)
 {
+	init_server(ip, port);
+
+
+};
+
+void Server::init_server(const char* ip, int port)
+{
+	int fd;
+	int status;
+	status = server_setup::create_socket(fd);
+
+	if(status)
+		exit(EXIT_FAILURE);
+
+	status = server_setup::fill_address(addr, ip, port);
+
+	if(status)
+		exit(EXIT_FAILURE);
+
+	status = server_setup::bind_socket(fd, addr);
+
+	if(status)
+		exit(EXIT_FAILURE);
+
+	status = server_setup::set_options(fd);
+
+	if(status)
+		exit(EXIT_FAILURE);
+
+	status = server_setup::set_nonblock(fd);
+
+	if(status)
+		exit(EXIT_FAILURE);
+
 
 };
 
@@ -59,7 +93,7 @@ namespace server_setup{
 
 	int set_options(int sock)
 	{
-		int status = setoptions(sock, SOL_SOCKET, SO_REUSEADDDR, &sock, sizeof(sock));
+		int status = setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &sock, sizeof(sock));
 		if(status == -1)
 		{
 			perror("Failure setting options");
@@ -79,8 +113,5 @@ namespace server_setup{
 		};
 		return 0;
 	};
-
-
-
 
 };
