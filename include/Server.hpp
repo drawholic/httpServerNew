@@ -40,6 +40,7 @@ class Server
 	socklen_t addrlen;
 
 	void init_server(const char*, int);
+	void close_socket();
 
 public:
 	Server(const char* ip = 0, int port = 0);
