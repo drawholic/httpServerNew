@@ -8,7 +8,7 @@ class Parser
 
 public:
 	Parser();
-	Request parser(std::string);
+	Request parse(std::string);
 };
 
 #endif
