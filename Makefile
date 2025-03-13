@@ -8,7 +8,7 @@ all: ${BUILD_DIR} ${BUILD_DIR}/main
 
 OBJS = ${BUILD_DIR}/ReadWrite.o \
 		${BUILD_DIR}/Parser.o \
-		${BUILD_DIR}/ClientContainer.o \
+		${BUILD_DIR}/ClientsContainer.o \
 		${BUILD_DIR}/Request.o
 
 ${BUILD_DIR}:
@@ -26,7 +26,7 @@ ${BUILD_DIR}/ReadWrite.o: ${SRC_DIR}/ReadWrite.cpp
 ${BUILD_DIR}/Parser.o: ${SRC_DIR}/Parser.cpp ${BUILD_DIR}/Request.o
 	${CXX} ${CXXFLAGS} -c $^ -o $@
 
-${BUILD_DIR}/ClientContainer.o: ${SRC_DIR}/ClientContainer.cpp
+${BUILD_DIR}/ClientsContainer.o: ${SRC_DIR}/ClientsContainer.cpp
 	${CXX} ${CXXFLAGS} -c $^ -o $@
 
 ${BUILD_DIR}/Request.o: ${SRC_DIR}/Request.cpp
