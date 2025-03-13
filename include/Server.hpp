@@ -7,6 +7,7 @@
 
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#include <cstdio>
 
 namespace server_setup{
 	
@@ -21,6 +22,8 @@ namespace server_setup{
 	void set_options(int);
 };
 
+const int DEFAULT_PORT = 8000;
+const char DEFAULT_IP[] = "0.0.0.0";
 
 class Server
 {
