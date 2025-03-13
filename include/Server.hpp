@@ -27,6 +27,7 @@ namespace server_setup{
 
 const int DEFAULT_PORT = 8000;
 const char DEFAULT_IP[] = "0.0.0.0";
+const unsigned BUFFER_SIZE = 1024;
 
 class Server
 {
@@ -38,7 +39,7 @@ class Server
 	sockaddr_in* addr;
 	socklen_t addrlen;
 
-	void init_server();
+	void init_server(const char*, int);
 
 public:
 	Server(const char* ip = 0, int port = 0);
