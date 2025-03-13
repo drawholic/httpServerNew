@@ -31,6 +31,7 @@ const unsigned BUFFER_SIZE = 1024;
 
 class Server
 {
+	int fd;
 	Parser* prs;
 	ReadWrite* rw;
 	ClientsContainer* fds;
