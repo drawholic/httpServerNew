@@ -12,11 +12,11 @@
 
 namespace server_setup{
 	
-	int create_socket(int);
+	int create_socket(int&);
 
 	int fill_address(sockaddr_in*, const char*, int);
 
-	int bind_socket(int, sockaddr_in*);
+	int bind_socket(int, sockaddr_in*, socklen_t);
 
 	int socket_listen(int, int);
 
