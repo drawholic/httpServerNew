@@ -15,7 +15,7 @@ int ClientsContainer::add(int client_fd)
 		printf("Invalid descriptor\n");
 		return -1;
 	}
-	if(check_if_exists(fd))
+	if(check_if_exists(client_fd))
 	{
 		printf("Already exists\n");
 		return -1;
@@ -23,9 +23,10 @@ int ClientsContainer::add(int client_fd)
 	{
 		pollfd new_fd;
 		new_fd.fd = client_fd;
-		new_fd.event = POLLIN;
+		new_fd.events = POLLIN;
 
 		fds.push_back(new_fd);
+
 		return 1;
 	};
 
@@ -55,3 +56,29 @@ bool ClientsContainer::check_if_exists(int fd)
 	}
 	return fds.end() == find_fd(fd);
 };
+
+bool ClientsContainer::check_if_exists(pollfd_it it)
+{
+	return it != fds.end();
+};
+
+int ClientsContainer::remove(int fd)
+{
+	if(fd == -1)
+	{
+		printf("Invalid descriptor");
+		return -1;
+	};
+
+	pollfd_it it = find_fd(fd);
+	if(check_if_exists(it))
+	{
+		fds.erase(it);
+		return 1;
+	}else
+	{
+		printf("Doesn't exist\n");
+		return -1;
+	};
+};
+
