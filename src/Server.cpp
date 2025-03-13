@@ -47,7 +47,10 @@ void Server::init_server(const char* ip, int port)
 Server::~Server(){
 	delete[] buffer;
 	delete addr;
+	close_socket();
 };
+
+void Server::close_socket(){};
 
 void Server::run(){};
 
