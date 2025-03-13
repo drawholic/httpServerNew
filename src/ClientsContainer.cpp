@@ -10,9 +10,14 @@ ClientsContainer::ClientsContainer()
 
 int ClientsContainer::add(int client_fd)
 {
+	if(client_fd == -1)
+	{
+		printf("Invalid descriptor\n");
+		return -1;
+	}
 	if(check_if_exists(fd))
 	{
-		printf("Already exists");
+		printf("Already exists\n");
 		return -1;
 	}else
 	{
@@ -28,6 +33,12 @@ int ClientsContainer::add(int client_fd)
 
 pollfd_it ClientsContainer::find_fd(int fd)
 {
+	if(fd == -1)
+	{
+		printf("Invalid descriptor\n");
+		return fds.end();
+	};
+
 	pollfd_it it = std::find_if(fds.begin(), fds.end(), [&fd](pollfd el){
 		return el.fd == fd;
 	});
@@ -37,5 +48,10 @@ pollfd_it ClientsContainer::find_fd(int fd)
 
 bool ClientsContainer::check_if_exists(int fd)
 {
+	if(fd == -1)
+	{
+		printf("Invalid descriptor\n");
+		return 0;
+	}
 	return fds.end() == find_fd(fd);
 };
