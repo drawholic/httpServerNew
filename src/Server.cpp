@@ -11,7 +11,6 @@ Server::Server(const char* ip, int port)
 
 void Server::init_server(const char* ip, int port)
 {
-	int fd;
 	int status;
 	addr = new sockaddr_in;
 	addrlen = sizeof(*addr);
