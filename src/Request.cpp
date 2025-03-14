@@ -1,9 +1,9 @@
 #include "Request.hpp"
 
-std::regex startline_regex = "(.+) (.+) (.+)";
-std::regex headers_regex = "(.+): (.+)";
+std::regex startline_regex(R"(.+) (.+) (.+)");
+std::regex headers_regex (R"(.+): (.+)");
 
-MethodsEnum get_method(std::string& string_method)
+MethodsEnum get_method(std::string string_method)
 {
 	if(string_method == "GET")
 		return GET;
@@ -26,15 +26,20 @@ MethodsEnum get_method(std::string& string_method)
 
 };
 
-void RequestStartLine::fill_members(std::string& input){
+int RequestStartLine::fill_members(std::string& input){
 
 	std::smatch cm;
-	std::regex_match(input, cm, startline_regex);
 
-	method = get_method(cm[0]);
+	if(std::regex_match(input, cm, startline_regex) && cm.size() == 4)
+	{
+		method = get_method(cm.str(1));
 
-	uri = cm[1];
+		uri = cm.str(2);
 
-	version = cm[2];
+		version = cm.str(3);
 
+	}else{
+		return -1;
+	}
+	return 1; 
 };
