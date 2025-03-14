@@ -14,7 +14,7 @@ OBJS = ${BUILD_DIR}/ReadWrite.o \
 ${BUILD_DIR}:
 	mkdir -p $@
 
-${BUILD_DIR}/main: ${SRC_DIR}/main.cpp ${BUILD_DIR}/Server.o
+${BUILD_DIR}/main: ${SRC_DIR}/main.cpp ${OBJS} ${BUILD_DIR}/Server.o
 	${CXX} ${CXXFLAGS} $^ -o $@
 
 ${BUILD_DIR}/Server.o: ${SRC_DIR}/Server.cpp ${OBJS}
