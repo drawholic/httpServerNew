@@ -3,6 +3,8 @@
 
 #include <string>
 #include <cstdio>
+#include <sys/socket.h>
+#include <unistd.h>
 
 class ReadWrite
 {
