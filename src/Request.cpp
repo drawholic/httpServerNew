@@ -26,6 +26,32 @@ MethodsEnum get_method(std::string string_method)
 
 };
 
+std::string method_to_string(MethodsEnum method)
+{
+	switch(method)
+	{
+	case GET: return "GET";break;
+	case POST: return "POST";break;
+	case DELETE: return "DELETE";break;
+	case HEAD: return "HEAD"; break;
+	case PATCH: return "PATCH"; break;
+	case PUT: return "PUT"; break;
+	case NONE return "NONE"; break;
+	default: return "NONE"; break;
+	};
+}
+
+void RequestStartLine::print()
+{
+	std::string method_str = method_to_string(method);
+
+	printf("Method: %s, URI: %s, version: %s\n", 
+		method_str.c_str(),
+	 	uri.c_str(), 
+	 	version.c_str()
+	 );
+};
+
 int RequestStartLine::fill_members(std::string& input){
 
 	std::smatch cm;
