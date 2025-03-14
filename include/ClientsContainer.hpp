@@ -5,6 +5,7 @@
 #include <poll.h>
 #include <algorithm>
 #include <cstdio>
+#include <unistd.h>
 
 typedef std::vector<pollfd>::iterator pollfd_it;
 
