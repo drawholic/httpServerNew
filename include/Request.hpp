@@ -2,6 +2,7 @@
 #define REQUEST_HPP
 
 #include <vector>
+#include <regex>
 
 enum MethodsEnum
 {	
