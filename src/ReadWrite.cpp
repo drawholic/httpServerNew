@@ -3,10 +3,11 @@
 
 ReadWrite::ReadWrite(){};
 
-int ReadWrite::readClient(int client_fd)
+int ReadWrite::readClient(int client_fd, std::string& buf)
 {
 	const unsigned buffersize = 1024;
 	const char* buffer = new char[buffersize];
+
 
 	unsigned bytes_read;
 	unsigned bytes_read_total = 0;
@@ -17,7 +18,10 @@ int ReadWrite::readClient(int client_fd)
 	{
 		bytes_read_total += bytes_read;
 		buffer[bytes_read] = 0;
+		
 		printf("%s", buffer);
+		
+		buf += buffer;
 	};
 	
 	printf("End of receiving...");
@@ -37,7 +41,7 @@ int ReadWrite::readClient(int client_fd)
 	return 1;
 };
 
-int ReadWrite::writeClient(int client_fd, std::string msg)
+int ReadWrite::writeClient(int client_fd, std::string& msg)
 {
 	unsigned bytes_sent = 0;
 	unsigned bytes_sent_total = 0;
