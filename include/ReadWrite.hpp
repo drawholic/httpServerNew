@@ -2,6 +2,7 @@
 #define READW_RITE_HPP
 
 #include <string>
+#include <cstdio>
 
 class ReadWrite
 {
