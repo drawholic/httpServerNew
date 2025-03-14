@@ -1,7 +1,7 @@
 #include "Request.hpp"
 
-std::regex startline_regex(R"(.+) (.+) (.+)");
-std::regex headers_regex (R"(.+): (.+)");
+std::regex startline_regex("(.+) (.+) (.+)");
+std::regex headers_regex ("(.+): (.+)");
 
 MethodsEnum get_method(std::string string_method)
 {
@@ -36,7 +36,7 @@ std::string method_to_string(MethodsEnum method)
 	case HEAD: return "HEAD"; break;
 	case PATCH: return "PATCH"; break;
 	case PUT: return "PUT"; break;
-	case NONE return "NONE"; break;
+	case NONE: return "NONE"; break;
 	default: return "NONE"; break;
 	};
 }
