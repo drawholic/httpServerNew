@@ -41,8 +41,8 @@ struct Request
 	std::vector<RequestHeader> headers;
 	std::string body;
 	
-	void fill_startline(std::string&);
-	void fill_headers(std::string&);
+	int fill_startline(std::string&);
+	int fill_headers(std::string&);
 };
 
 #endif
