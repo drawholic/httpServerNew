@@ -13,6 +13,13 @@ enum MethodsEnum
 
 #include <string>
 
+struct RequestStartLine
+{
+	MethodsEnum method;
+	std::string uri;
+	std::string version;
+};
+
 struct Request
 {
 	MethodsEnum method;
