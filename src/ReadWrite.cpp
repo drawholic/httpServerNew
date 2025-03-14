@@ -25,7 +25,11 @@ int ReadWrite::readClient(int client_fd)
 	if(bytes_read == -1)
 	{
 		perror("Failure on reading client");
+		delete[] buffer;
 		return -1;
+		
+	}else if(bytes_read == 0){
+		printf("Client disconnected\n");
 	};
 
 
