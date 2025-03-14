@@ -27,12 +27,34 @@ int ReadWrite::readClient(int client_fd)
 		perror("Failure on reading client");
 		delete[] buffer;
 		return -1;
-		
+
 	}else if(bytes_read == 0){
 		printf("Client disconnected\n");
 	};
 
 
 	delete[] buffer;
+	return 1;
+};
+
+int ReadWrite::writeClient(int client_fd, std::string msg)
+{
+	unsigned bytes_sent = 0;
+	unsigned bytes_sent_total = 0;
+	unsigned msg_len = msg.size();
+
+
+	while(bytes_sent_total < msg_len)
+	{
+		bytes_sent = send(client_fd, msg.c_str(), msg_len, 0);
+
+		if(bytes_sent == -1)
+		{
+			perror("writeClient: Failure on sending");
+			return bytes_sent;
+		};
+		bytes_sent_total += bytes_sent;
+	};
+
 	return 1;
 };
