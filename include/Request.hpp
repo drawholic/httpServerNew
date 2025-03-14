@@ -20,6 +20,11 @@ struct RequestStartLine
 	std::string version;
 };
 
+struct RequestHeader
+{
+	std::pair<std::string, std::string> header;
+};
+
 struct Request
 {
 	MethodsEnum method;
