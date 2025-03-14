@@ -26,6 +26,7 @@ struct RequestStartLine
 	std::string version;
 
 	int fill_members(std::string&);
+	void print();
 };
 
 struct RequestHeader
