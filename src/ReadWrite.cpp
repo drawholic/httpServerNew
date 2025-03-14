@@ -62,3 +62,19 @@ int ReadWrite::writeClient(int client_fd, std::string& msg)
 
 	return 1;
 };
+
+int ReadWrite::echoClient(int client_fd)
+{
+	std::string message;
+
+	int status = readClient(client_fd, message);
+	if(status == -1)
+		return -1;
+
+	status = writeClient(client_fd, message);
+
+	if(status == -1)
+		return -1;
+
+	return 1;
+};
