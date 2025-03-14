@@ -11,12 +11,13 @@ enum MethodsEnum
 	DELETE,
 	HEAD,
 	PATCH,
-	PUT
+	PUT,
+	NONE
 };
 
 #include <string>
 
-MethodsEnum get_method(std::string&);
+MethodsEnum get_method(std::string);
 
 struct RequestStartLine
 {
@@ -24,7 +25,7 @@ struct RequestStartLine
 	std::string uri;
 	std::string version;
 
-	void fill_members(std::string&);
+	int fill_members(std::string&);
 };
 
 struct RequestHeader
