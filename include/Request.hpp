@@ -27,8 +27,8 @@ struct RequestHeader
 
 struct Request
 {
-	MethodsEnum method;
-	std::string url;
+	RequestStartLine startline;
+	std::vector<RequestHeader> headers;
 	std::string body;
 };
 
