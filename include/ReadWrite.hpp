@@ -8,9 +8,9 @@ class ReadWrite
 
 public:
 	ReadWrite();
-	void echoClient(int);
-	void readClient(int);
-	void writeClient(int, std::string);
+	int echoClient(int);
+	int readClient(int);
+	int writeClient(int, std::string);
 };
 
 #endif
