@@ -16,6 +16,8 @@ enum MethodsEnum
 
 #include <string>
 
+MethodsEnum get_method(std::string&);
+
 struct RequestStartLine
 {
 	MethodsEnum method;
