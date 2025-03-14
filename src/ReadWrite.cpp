@@ -6,7 +6,7 @@ ReadWrite::ReadWrite(){};
 int ReadWrite::readClient(int client_fd, std::string& buf)
 {
 	const unsigned buffersize = 1024;
-	const char* buffer = new char[buffersize];
+	char* buffer = new char[buffersize];
 
 
 	unsigned bytes_read;
@@ -14,7 +14,7 @@ int ReadWrite::readClient(int client_fd, std::string& buf)
 
 	printf("Receiving...\n");
 
-	while((bytes_read = read(client_fd, buffer, buffersize)) > 0)
+	while((bytes_read = recv(client_fd, buffer, buffersize, 0)) > 0)
 	{
 		bytes_read_total += bytes_read;
 		buffer[bytes_read] = 0;
