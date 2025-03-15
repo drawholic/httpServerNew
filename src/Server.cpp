@@ -58,6 +58,8 @@ void Server::run(){
 	while(running)
 	{
 		int client = accept_client();
+
+		
 	};
 };
 
@@ -78,8 +80,7 @@ int Server::accept_client()
 		perror("accept_client::Bad accept");
 		return status;
 	};
-
-
+	return 1;
 };
 
 
