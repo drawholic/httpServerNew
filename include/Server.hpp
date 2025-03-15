@@ -44,6 +44,7 @@ class Server
 	void init_server(const char*, int);
 	int accept_client();
 	void close_socket();
+	void poll_clients();
 
 public:
 	Server(const char* ip = 0, int port = 0);
