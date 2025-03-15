@@ -46,7 +46,7 @@ struct Request
 	
 	int fill_startline(std::string&);
 	int fill_headers(std::string&);
-
+	void print();
 
 };
 
