@@ -39,7 +39,7 @@ int ClientsContainer::add(int client_fd)
 		perror("ClientsContainer::add(int client_fd): Invalid descriptor\n");
 		return -1;
 	}
-	if(check_if_exists(client_fd))
+	if(fds.size() != 0 && check_if_exists(client_fd))
 	{
 		perror("ClientsContainer::add(int client_fd): Already exists\n");
 		return -1;
@@ -53,7 +53,6 @@ int ClientsContainer::add(int client_fd)
 
 		return 1;
 	};
-
 };
 
 pollfd_it ClientsContainer::find_fd(int fd)
