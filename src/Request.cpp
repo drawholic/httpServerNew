@@ -1,7 +1,10 @@
 #include "Request.hpp"
 
 std::regex startline_regex("(.+) (.+) (.+)");
-std::regex headers_regex ("(.+): (.+)");
+std::regex headers_regex (
+	// "^(.+): (.+)\n$"
+	R"(^(\S+):\s*(.+)$)"
+	);
 
 MethodsEnum get_method(std::string string_method)
 {
@@ -68,4 +71,46 @@ int RequestStartLine::fill_members(std::string& input){
 		return -1;
 	}
 	return 1; 
+};
+
+int RequestHeader::fill_header(std::string& input)
+{
+	std::smatch cm;
+
+	 if(std::regex_match(input, cm, headers_regex))
+	 { 
+	 	std::pair<std::string, std::string> header_pair{cm.str(1), cm.str(2)};
+	 	header = header_pair; 
+	 	return 1;
+	 }else{
+	 	return -1;
+	 };
+};
+
+int Request::fill_headers(std::string& input)
+{
+	RequestHeader rh;
+	std::stringstream ss(input);
+	std::string line;
+
+	while(getline(ss, line))
+	{ 
+		if(rh.fill_header(line) == -1)
+		{
+			return -1;
+		}
+		headers.push_back(rh); 
+	} 
+	return 1;
+};
+
+int Request::fill_startline(std::string& input)
+{
+	if(startline.fill_members(input) == -1)
+	{
+		return -1;
+	}else{
+		return 1;
+	};
+
 };
