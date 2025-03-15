@@ -6,6 +6,10 @@ Server::Server(const char* ip, int port)
 {
 	init_server(ip, port);
 
+	fds = new ClientsContainer;
+	prs = new Parser;
+	rw = new ReadWrite;
+	
 
 };
 
@@ -71,6 +75,7 @@ void Server::stop()
 
 void Server::run(){
 	
+	printf("Running...\n");
 	fds->add(fd);
 
 	while(running)
