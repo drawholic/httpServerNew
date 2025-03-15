@@ -55,30 +55,48 @@ Server::~Server(){
 void Server::close_socket(){};
 
 void Server::run(){
+	
+	fds->add(fd);
+
 	while(running)
-	{
-		int status = accept_client();
-
-		if(status == -1)
-		{
-			perror("Server::run(): bad call to accept_client");
-			continue;
-		};
-
-
+	{ 
+		poll_clients();
 	};
 };
 
 void Server::poll_clients()
 {
-	int status = poll(fds->get_pointer(), fds->get_size(), 1000);
+	int fd_num = poll(fds->get_pointer(), fds->get_size(), 1000);
 
-	if(status == -1)
+	if(fd_num == -1)
 	{
 		perror("Server::poll_clients(): failure on poll call");
 		return;
+	}else if(fd_num == 0)
+	{
+		printf("Server::poll_clients: poll timed out");
 	};
 
+	std::string buffer;
+	int current = 0;
+	pollfd_it it = fds->begin();
+	while(current != fd_num)
+	{
+
+		if(it->revents & POLLIN)
+		{
+			if(it->fd == fd)
+			{
+				accept_client();
+			}else{
+				rw->readClient(it->fd, buffer);
+				printf("Received: %s\n", buffer.c_str());
+			};
+			current++;
+		};
+
+		std::next(it);
+	};
 };
 
 int Server::accept_client()
