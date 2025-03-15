@@ -25,6 +25,8 @@ public:
 	pollfd* get_pointer();
 	size_t get_size();
 
+	void close_clients();
+
 	pollfd_it begin();
 	pollfd_it end();
 
