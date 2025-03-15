@@ -18,7 +18,7 @@ namespace server_setup{
 
 	int bind_socket(int, sockaddr_in*, socklen_t);
 
-	int socket_listen(int, int);
+	int sock_listen(int, int);
 
 	int set_options(int);
 
