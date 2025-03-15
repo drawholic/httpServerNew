@@ -50,6 +50,8 @@ public:
 	Server(const char* ip = 0, int port = 0);
 	~Server();
 	void run();
+	void stop();
+	
 };
 
 
