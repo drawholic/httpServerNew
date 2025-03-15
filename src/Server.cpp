@@ -54,7 +54,33 @@ Server::~Server(){
 
 void Server::close_socket(){};
 
-void Server::run(){};
+void Server::run(){
+	while(running)
+	{
+		int client = accept_client();
+	};
+};
+
+int Server::accept_client()
+{
+	int client = accept(fd, 0, 0);
+
+	if(client == -1)
+	{
+		perror("accept_client: Failure accepting");
+		return client;
+	};
+
+	int status = fds->add(client);
+
+	if(status == -1)
+	{
+		perror("accept_client::Bad accept");
+		return status;
+	};
+
+
+};
 
 
 namespace server_setup{
