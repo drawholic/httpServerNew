@@ -119,3 +119,13 @@ void RequestHeader::print()
 {
 	printf("%s: %s\n", header.first.c_str(), header.second.c_str());
 };
+
+void Request::print()
+{
+	startline.print();
+
+	for(auto i : headers)
+		i.print();
+
+	printf("Body: %s\n", body.c_str());
+};
