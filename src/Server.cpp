@@ -57,10 +57,28 @@ void Server::close_socket(){};
 void Server::run(){
 	while(running)
 	{
-		int client = accept_client();
+		int status = accept_client();
 
-		
+		if(status == -1)
+		{
+			perror("Server::run(): bad call to accept_client");
+			continue;
+		};
+
+
 	};
+};
+
+void Server::poll_clients()
+{
+	int status = poll(fds->get_pointer(), fds->get_size(), 1000);
+
+	if(status == -1)
+	{
+		perror("Server::poll_clients(): failure on poll call");
+		return;
+	};
+
 };
 
 int Server::accept_client()
