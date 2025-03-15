@@ -114,3 +114,8 @@ int Request::fill_startline(std::string& input)
 	};
 
 };
+
+void RequestHeader::print()
+{
+	printf("%s: %s\n", header.first.c_str(), header.second.c_str());
+};
