@@ -63,6 +63,12 @@ void Server::close_socket(){
 	fds->close_clients();
 };
 
+void Server::stop()
+{
+	close_socket();
+	running = false;
+};
+
 void Server::run(){
 	
 	fds->add(fd);
