@@ -33,6 +33,8 @@ struct RequestHeader
 {
 	std::pair<std::string, std::string> header;
 
+	int fill_header(std::string&);
+
 };
 
 struct Request
@@ -43,6 +45,8 @@ struct Request
 	
 	int fill_startline(std::string&);
 	int fill_headers(std::string&);
+
+
 };
 
 #endif
