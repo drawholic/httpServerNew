@@ -27,7 +27,5 @@ Request Parser::parse(std::string input)
 	rq.fill_headers(headers);
 	rq.body = input.substr(end_of_headers);
 
-	rq.print();
-
 	return rq;
 };
