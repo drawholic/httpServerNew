@@ -43,6 +43,10 @@ void Server::init_server(const char* ip, int port)
 	if(status)
 		exit(EXIT_FAILURE);
 
+	status = server_setup::sock_listen(fd, DEFAULT_LIMIT);
+
+	if(status)
+		exit(EXIT_FAILURE);
 	buffer = new char[BUFFER_SIZE];
 };
 
@@ -52,7 +56,12 @@ Server::~Server(){
 	close_socket();
 };
 
-void Server::close_socket(){};
+void Server::close_socket(){
+	if(fd != -1)
+		close(fd);
+
+	fds->close_clients();
+};
 
 void Server::run(){
 	
@@ -71,10 +80,7 @@ void Server::poll_clients()
 	if(fd_num == -1)
 	{
 		perror("Server::poll_clients(): failure on poll call");
-		return;
-	}else if(fd_num == 0)
-	{
-		printf("Server::poll_clients: poll timed out");
+		return; 
 	};
 
 	std::string buffer;
@@ -83,7 +89,7 @@ void Server::poll_clients()
 	while(current != fd_num)
 	{
 
-		if(it->revents & POLLIN)
+		if(it->fd >= 0 && it->revents & POLLIN)
 		{
 			if(it->fd == fd)
 			{
@@ -95,7 +101,7 @@ void Server::poll_clients()
 			current++;
 		};
 
-		std::next(it);
+		it = std::next(it);
 	};
 };
 
