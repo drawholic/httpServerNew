@@ -11,6 +11,11 @@ pollfd* ClientsContainer::get_pointer()
 	return fds.data();
 };
 
+size_t ClientsContainer::get_size()
+{
+	return fds.size();
+};
+
 int ClientsContainer::add(int client_fd)
 {
 	if(client_fd == -1)
