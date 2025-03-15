@@ -22,6 +22,8 @@ public:
 	int add(int);
 	int remove(int);
 	int remove(pollfd_it);
+	pollfd* get_pointer();
+
 };
 
 
