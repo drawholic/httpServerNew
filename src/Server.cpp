@@ -111,7 +111,8 @@ int Server::accept_client()
 
 	if(client == -1)
 	{
-		perror("accept_client: Failure accepting");
+		if(errno != EAGAIN && errno != EWOULDBLOCK)
+			perror("accept_client: Failure accepting");
 		return client;
 	};
 
@@ -147,7 +148,7 @@ namespace server_setup{
 			printf("Failure setting address to string: %s\n", ip);
 			return -1;
 		}else if(status == -1){
-			perror("Failure setting address to string\n");
+			perror("Failure setting address to string");
 			return -1;
 		};
 		addr->sin_port = htons(port);
