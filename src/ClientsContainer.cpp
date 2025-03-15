@@ -12,12 +12,12 @@ int ClientsContainer::add(int client_fd)
 {
 	if(client_fd == -1)
 	{
-		perror("add(int client_fd): Invalid descriptor\n");
+		perror("ClientsContainer::add(int client_fd): Invalid descriptor\n");
 		return -1;
 	}
 	if(check_if_exists(client_fd))
 	{
-		perror("add(int client_fd): Already exists\n");
+		perror("ClientsContainer::add(int client_fd): Already exists\n");
 		return -1;
 	}else
 	{
