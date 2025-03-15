@@ -6,6 +6,22 @@ ClientsContainer::ClientsContainer()
 
 };
 
+pollfd_it ClientsContainer::begin()
+{
+	return fds.begin();
+};
+
+pollfd_it ClientsContainer::end()
+{
+	return fds.end();
+}
+
+void ClientsContainer::close_clients()
+{
+	for(auto i : fds)
+		close(i.fd);
+};
+
 pollfd* ClientsContainer::get_pointer()
 {
 	return fds.data();
