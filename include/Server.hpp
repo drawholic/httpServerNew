@@ -31,6 +31,7 @@ const unsigned BUFFER_SIZE = 1024;
 
 class Server
 {
+	bool running = true;
 	int fd;
 	Parser* prs;
 	ReadWrite* rw;
@@ -41,6 +42,7 @@ class Server
 	socklen_t addrlen;
 
 	void init_server(const char*, int);
+	int accept_client();
 	void close_socket();
 
 public:
