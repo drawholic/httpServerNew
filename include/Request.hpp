@@ -34,6 +34,7 @@ struct RequestHeader
 	std::pair<std::string, std::string> header;
 
 	int fill_header(std::string&);
+	void print();
 
 };
 
