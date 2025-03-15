@@ -23,6 +23,7 @@ public:
 	int remove(int);
 	int remove(pollfd_it);
 	pollfd* get_pointer();
+	size_t get_size();
 
 };
 
