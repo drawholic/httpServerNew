@@ -6,7 +6,10 @@ ClientsContainer::ClientsContainer()
 
 };
 
-
+pollfd* ClientsContainer::get_pointer()
+{
+	return fds.data();
+};
 
 int ClientsContainer::add(int client_fd)
 {
