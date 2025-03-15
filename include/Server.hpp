@@ -28,7 +28,7 @@ namespace server_setup{
 const int DEFAULT_PORT = 8000;
 const char DEFAULT_IP[] = "0.0.0.0";
 const unsigned BUFFER_SIZE = 1024;
-
+const unsigned DEFAULT_LIMIT = 10;
 class Server
 {
 	bool running = true;
